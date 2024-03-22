@@ -1,0 +1,25 @@
+---
+import MagneticTitle from "../privateComponents/MagneticTitle.astro";
+
+
+interface Props {
+    intro: string;
+}
+
+
+const { intro, IsInternal } = Astro.props;
+---
+<div id="heroTitle" class:list={[{ gameMode: IsInternal }]} >
+    <h1 transition:name="testingTitle" transition:animate="fade">{intro} <MagneticTitle copy="Font Game Trivia" /></h1>
+</div>
+<style>
+    #heroTitle{
+        @apply flex items-center justify-center;
+        &.gameMode{
+            @apply scale-[75%];
+        }
+        h1 {
+            @apply text-base md:text-xl text-lighter font-thin flex flex-col tracking-widest text-center transition-all ease-in-out duration-700;
+        }
+    }
+</style>

@@ -1,0 +1,63 @@
+---
+import LottieAnim from "./LottieAnim.astro";
+interface Props {
+	title: string;
+	body: string;
+	href: string;
+	bgLime: boolean;
+	bgBlue: boolean;
+	anim: string;
+	bgCircle: string;
+}
+
+const { href, title, body, bgLime, bgBlue, anim, bgCircle } = Astro.props;
+
+---
+<div class:list={["game-container",{lime: bgLime },{blue: bgBlue }]}>
+	<a class="btn" href={href}  >
+		<div id="animItem" class={bgCircle}>
+			<LottieAnim text={anim} />
+		</div>
+		<div class="copy">
+			<h2>{title}</h2>
+			<p>{body}</p>
+		</div>
+	</a>
+</div>
+
+<style>
+	.game-container{
+		@apply flex flex-col rounded-3xl w-full justify-center items-center space-y-6 transition-all ease-in-out duration-500 hover:drop-shadow-2xl outline outline-offset-[-1px] outline-transparent outline-1 hover:outline-8 hover:outline-white;
+		&.lime{
+			@apply bg-lime outline-lime hover:outline-darkLime;
+			.btn{
+				#animItem{
+					@apply outline-darkLime border-white;
+				}
+			}
+		}
+		&.blue{
+			@apply bg-blue outline-blue hover:outline-white;
+			.btn{
+				#animItem{
+					@apply outline-white border-dark;
+				}
+			}
+		}
+		.btn{
+			@apply  flex flex-col p-10 w-full justify-center items-center space-y-6;
+			#animItem{
+				@apply border-2 border-opacity-90 max-w-[140px] max-h-[140px] rounded-full  flex flex-col overflow-hidden justify-center outline outline-8 outline-dark;
+			}
+			.copy{
+				@apply flex w-full flex-col text-center space-y-2.5;
+				h2{
+					@apply text-lg font-semibold tracking-wider;
+				}
+				p{
+					@apply text-sm;
+				}
+			}
+		}
+	}
+</style>

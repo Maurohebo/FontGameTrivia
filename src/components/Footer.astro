@@ -1,0 +1,32 @@
+---
+import Github from "../privateComponents/logos/Github.astro";
+import Linkedin from "../privateComponents/logos/Linkedin.astro";
+---
+<div>
+<p>©2024 - Made by <a href="https://mahebo.com" target="_blank">Mahebo<sup>TM</sup></a>&nbsp;&nbsp;&nbsp; with 💛 and <a href="https://astro.build/" target="_blank">Astro</a> 🚀</p>
+<p class="icons"><a class="icon" href="https://github.com/Maurohebo" target="_blank"><Github /></a> <a class="icon" href="https://github.com/Maurohebo" target="_blank"><Linkedin /></a></p>
+</div>
+
+<style>
+    div{
+        @apply flex flex-col items-center gap-4;
+    }
+    p{
+      @apply text-center text-xs text-light tracking-wide;
+        &.icons{
+            @apply flex gap-4;
+        }
+        a{
+            @apply relative font-medium text-light text-opacity-50 underline hover:text-lime transition-all ease-in-out duration-500;
+            sup{
+                @apply absolute no-underline text-[0.3rem] top-1;
+            }
+            &.icon{
+                @apply flex items-center justify-center text-light opacity-35 w-[30px] transition-all ease-in-out duration-500 hover:scale-125 hover:opacity-80;
+                svg{
+                    @apply block w-full h-auto;
+                }
+            }
+        }
+    }
+</style>

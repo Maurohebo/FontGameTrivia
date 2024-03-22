@@ -1,0 +1,37 @@
+---
+import '../styles/font.css';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Font Game Trivia</title>
+		<ViewTransitions />
+		<script is:inline src="/js/lottie.min.js"></script>
+
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	html{
+		@apply bg-gradient-to-t from-low to-dark min-h-screen overflow-hidden;
+	}
+	body {
+		@apply flex flex-col justify-center items-center min-h-full h-auto w-full font-tomato p-12 space-y-12;
+	}
+</style>

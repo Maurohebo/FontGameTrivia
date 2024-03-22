@@ -1,0 +1,46 @@
+---
+interface Props {
+    op1: string,
+    op2: string,
+    op3: string,
+    op4: string,
+    limeTheme: boolean,
+    blueTheme: boolean
+}
+const {op1,op2,op3,op4,limeTheme, blueTheme} = Astro.props;
+---
+<div class:list={["options", {lime: limeTheme}, {blue: blueTheme}]}>
+    <button><i>A</i> <span>{op1}</span></button>
+    <button><i>B</i> <span>{op2}</span></button>
+    <button><i>C</i> <span>{op3}</span></button>
+    <button><i>D</i> <span>{op4}</span></button>
+</div>
+
+<style>
+    .options{
+        @apply rounded-b-2xl min-h-24 grid grid-cols-2 p-6 gap-4;
+        button{
+            @apply border border-dark p-2.5 rounded-full hover:ring-[6px] transition-all ease-in-out duration-500 ring-opacity-50 flex justify-center items-center;
+            i{
+                @apply not-italic flex self-start rounded-full min-w-[30px] min-h-[30px] border items-center justify-center border-dark;
+            }
+            span{
+                @apply flex items-center justify-center w-full;
+            }
+        }
+
+        &.lime{
+            @apply bg-lime;
+            button{
+                @apply ring-darkLime hover:bg-lightLime;
+            }
+        }
+
+        &.blue{
+            @apply bg-blue;
+            button{
+                @apply ring-darkBlue hover:bg-lightBlue;
+            }
+        }
+    }
+</style>

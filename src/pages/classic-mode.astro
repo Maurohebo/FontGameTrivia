@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro";
+import GameOptions from "../components/GameOptions.astro";
+import {db, ClassicMode} from 'astro:db';
+import Font from "../components/Font.astro";
+
+function shuffle(sourceArray) {
+    for (let i = sourceArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [sourceArray[i], sourceArray[j]] = [sourceArray[j], sourceArray[i]];
+    }
+    return sourceArray;
+}
+
+let {font,op1,op2,op3,op4} = Astro.props;
+
+const data = shuffle(await db.select().from(ClassicMode));
+let currentQuestion = 0;
+let {questions} = data[currentQuestion];
+let totalQuestions = data.length;
+
+let assignOptions = (e) => {
+    //load current question
+    let {typeface: fontImage} = data[e];
+    let q1 = questions[0].name;
+    let q2 = questions[1].name;
+    let q3 = questions[2].name;
+    let q4 = questions[3].name;
+
+    //store in shuffle array
+    let options = shuffle([q1,q2,q3,q4]);
+
+    //assign values
+    font = fontImage;
+    op1 = options[0];
+    op2 = options[1];
+    op3 = options[2];
+    op4 = options[3];
+}
+
+let game = () => {
+    while (currentQuestion < totalQuestions){
+        assignOptions(currentQuestion);
+        totalQuestions--;
+        console.log(totalQuestions)
+    }
+}
+
+game();
+
+console.log()
+---
+<Layout>
+    <header>
+        <Header intro="Welcome to the Classic Mode 🔍" IsInternal="true"/>
+    </header>
+    <main>
+        <div id="game-container">
+            <p class="instructions"><strong>Are you up for a font-finding challenge?</strong> Simply gaze upon the word and put your typographic detective skills to the test by clicking on the font name you think fits best. <span>Let's dive in and uncover the font connoisseur within you!</span></p>
+
+            <div class="quiz">
+                <div class="imageFont">
+                    <div class="font"><Font font={font} /></div>
+                </div>
+                <GameOptions op1={op1} op2={op2} op3={op3} op4={op4} limeTheme/>
+            </div>
+
+
+
+        </div>
+    </main>
+    <footer transition:name="footer">
+        <Footer/>
+    </footer>
+</Layout>
+
+<style>
+    main {
+        @apply relative flex flex-row w-full text-center gap-12 items-center max-w-2xl -top-9;
+
+        #game-container{
+            @apply min-h-24 w-full flex flex-col rounded-2xl gap-6;
+            .instructions {
+                @apply text-light font-light text-sm tracking-widest;
+                strong{
+                    @apply text-lighter font-semibold;
+                }
+                span{
+                    @apply text-lime text-opacity-70;
+                }
+            }
+
+            .imageFont{
+                @apply bg-mid border-lime border w-full min-h-[140px] rounded-t-2xl p-16 flex items-center justify-center;
+                .font{
+                    @apply w-full max-w-[300px] text-lighter;
+                }
+            }
+        }
+    }
+
+    footer{
+        @apply relative -top-9;
+    }
+</style>

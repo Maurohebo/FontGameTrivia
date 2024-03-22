@@ -1,0 +1,21 @@
+---
+interface Props {
+    text: string;
+}
+const {text} = Astro.props;
+let animName = {text};
+let animId = 'anim-' + animName.text.split('.')[0];
+---
+<div id={animId}>
+
+</div>
+<script define:vars={{ animId, text }}>
+    const animElement = document.getElementById(animId);
+    lottie.loadAnimation({
+        container: animElement,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: text
+    });
+</script>

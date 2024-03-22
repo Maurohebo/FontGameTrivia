@@ -1,0 +1,21 @@
+---
+import Helvetica from "../classic-mode/Helvetica.astro";
+import ArialBlack from "../classic-mode/ArialBlack.astro";
+import GeorgiaBold from "../classic-mode/GeorgiaBold.astro";
+interface Props {
+    font: string,
+}
+const {font} = Astro.props;
+
+---
+<svg id="font" data-name="font" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 46">
+    {(font === "Helvetica") && <Helvetica />}
+    {(font === "ArialBlack") && <ArialBlack />}
+    {(font === "GeorgiaBold") && <GeorgiaBold />}
+</svg>
+
+<style>
+    svg{
+        @apply h-[70px] w-[300px] flex items-center justify-center;
+    }
+</style>

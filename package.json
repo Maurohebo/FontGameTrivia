@@ -1,0 +1,28 @@
+{
+  "name": "fontgametrivia",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build -- --port 3010",
+    "buildNoCheck": "astro build -- --port 1348",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.9",
+    "@astrojs/db": "^0.8.7",
+    "@astrojs/node": "^8.2.3",
+    "@astrojs/tailwind": "^5.1.0",
+    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+    "astro": "^4.5.5",
+    "lottie-web": "^5.12.2",
+    "sass": "^1.71.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "postcss-nesting": "^12.1.0"
+  }
+}

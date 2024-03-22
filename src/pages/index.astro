@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Option from "../components/Option.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+
+---
+
+<Layout title="Welcome to the Font Game Trivia." description="Esta es una descripción">
+    <header>
+        <Header intro="Hello 👋! Welcome to the"/>
+        <p class="instructions">To get started, please select below the level of difficult for the trivia.</p>
+        <p>
+
+        </p>
+    </header>
+    <main transition:name="main">
+        <Option title="Classic mode"
+                body="Identify fonts on screen. Quick, fun, and perfect for font lovers - an Easy-Peasy mode for typography enthusiasts!"
+                href="/classic-mode" anim="letter.json" bgCircle="bg-dark" bgLime/>
+        <Option title="Branding mode"
+                body="Unveil brand identities through fonts. Explore the font corporate's playground with precision and delight!"
+                href="/branding-mode" anim="logos.json" bgCircle="bg-dark" bgBlue/>
+    </main>
+    <footer transition:name="footer">
+        <Footer/>
+    </footer>
+</Layout>
+
+<style>
+    header{
+        @apply flex flex-col gap-3;
+    }
+    main {
+        @apply flex flex-row w-full text-center gap-12 items-center max-w-sm md:max-w-5xl;
+        div{
+            @apply w-1/2;
+        }
+    }
+
+    .instructions {
+        @apply text-light font-light text-sm tracking-widest;
+    }
+</style>
